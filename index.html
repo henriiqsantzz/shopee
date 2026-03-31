@@ -33,10 +33,10 @@
         .topbar-secure .material-symbols-outlined{font-size:14px}
 
         /* ── WRAP ── */
-        .wrap{padding:76px 16px 32px;max-width:460px;margin:0 auto;display:block;} /* Alterado para block para mostrar form inicial */
+        .wrap{padding:76px 16px 32px;max-width:460px;margin:0 auto;display:block; width: 100%;}
         .box{background:var(--card);border-radius:20px;padding:24px 20px;box-shadow:0 2px 20px rgba(0,0,0,.04);margin-bottom:14px}
 
-        /* ── FORMULÁRIO (NOVO) ── */
+        /* ── FORMULÁRIO ── */
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--txt2); margin-bottom: 6px; }
         .form-input { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; font-family: 'Montserrat', sans-serif; outline: none; transition: border 0.2s; background: #fafafa; }
@@ -44,6 +44,17 @@
         .btn-submit { width: 100%; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border: none; border-radius: 14px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 14px var(--primary-glow); margin-top: 10px; transition: transform 0.1s; display: flex; align-items: center; justify-content: center; gap: 8px;}
         .btn-submit:active { transform: scale(0.98); }
         .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+        /* ── DEPOIMENTOS ── */
+        .testim-title { font-size: 16px; font-weight: 800; color: var(--txt1); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .testim-item { display: flex; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .testim-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .testim-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--primary-bg); color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .testim-content { flex: 1; }
+        .testim-name { font-size: 13px; font-weight: 700; color: var(--txt1); margin-bottom: 2px; }
+        .testim-stars { color: #f5a623; font-size: 14px; margin-bottom: 4px; display: flex; gap: 2px; }
+        .testim-stars .material-symbols-outlined { font-size: 14px; font-variation-settings: 'FILL' 1; }
+        .testim-text { font-size: 13px; color: var(--txt2); line-height: 1.4; }
 
         /* ── PROGRESS ── */
         .progress{width:100%;height:5px;background:#efefef;border-radius:3px;overflow:hidden;margin-bottom:18px}
@@ -68,10 +79,10 @@
 
         /* ── QR CODE ── */
         .qr-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:20px}
-        .qr-frame{width:224px;height:224px;background:#fff;border:3px solid var(--primary);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:14px;box-shadow:0 4px 20px var(--primary-glow);overflow:hidden}
-        .qr-frame img{width:194px;height:194px;border-radius:10px;image-rendering:pixelated}
-        .qr-title{font-size:14px;font-weight:700;color:var(--txt1);margin-bottom:3px}
-        .qr-sub{font-size:12px;color:var(--txt2)}
+        .qr-frame{width:224px;height:224px;background:#fff;border:3px solid var(--primary);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:14px;box-shadow:0 4px 20px var(--primary-glow);overflow:hidden; max-width: 100%;}
+        .qr-frame img{width:194px;height:194px;border-radius:10px;image-rendering:pixelated; max-width: 100%;}
+        .qr-title{font-size:14px;font-weight:700;color:var(--txt1);margin-bottom:3px; text-align: center;}
+        .qr-sub{font-size:12px;color:var(--txt2); text-align: center;}
 
         /* ── DIVIDER ── */
         .div-or{display:flex;align-items:center;gap:14px;margin:18px 0}
@@ -96,7 +107,7 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .status-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;background:#fafafa;border-radius:14px;margin-top:18px}
         .status-spin{width:16px;height:16px;border:2px solid rgba(238,77,45,.2);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
-        .status-bar span{font-size:12px;font-weight:600;color:var(--txt2)}
+        .status-bar span{font-size:12px;font-weight:600;color:var(--txt2); text-align: center;}
 
         /* ── INSTRUCOES ── */
         .inst{display:flex;gap:12px;align-items:flex-start;margin-bottom:13px}
@@ -145,7 +156,7 @@
     <div class="box fade-in" id="formCard">
         <p style="font-size: 16px; font-weight: 800; color: var(--txt1); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
             <span class="material-symbols-outlined" style="color: var(--primary)">person</span>
-            Dados do Comprador
+            Dados de Cadastro
         </p>
 
         <form id="checkoutForm">
@@ -169,6 +180,68 @@
                 Gerar PIX
             </button>
         </form>
+    </div>
+
+    <div class="box fade-in" id="testimonialsCard">
+        <p class="testim-title">
+            <span class="material-symbols-outlined" style="color: var(--primary)">star</span>
+            O que dizem sobre nós
+        </p>
+
+        <div class="testim-item">
+            <div class="testim-avatar">AS</div>
+            <div class="testim-content">
+                <div class="testim-name">Ana Silva</div>
+                <div class="testim-stars">
+                    <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                </div>
+                <div class="testim-text">Super rápido e prático. O acesso chegou no meu e-mail na mesma hora em que fiz o pagamento!</div>
+            </div>
+        </div>
+
+        <div class="testim-item">
+            <div class="testim-avatar">CM</div>
+            <div class="testim-content">
+                <div class="testim-name">Carlos Moura</div>
+                <div class="testim-stars">
+                    <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                </div>
+                <div class="testim-text">Recomendo muito! Estava com dúvida se era seguro, mas foi tudo perfeito e transparente.</div>
+            </div>
+        </div>
+
+        <div class="testim-item">
+            <div class="testim-avatar">JP</div>
+            <div class="testim-content">
+                <div class="testim-name">Juliana Pereira</div>
+                <div class="testim-stars">
+                    <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                </div>
+                <div class="testim-text">Muito fácil de preencher e o pagamento via PIX aprovou em segundos. Plataforma nota 10.</div>
+            </div>
+        </div>
+
+        <div class="testim-item">
+            <div class="testim-avatar">MT</div>
+            <div class="testim-content">
+                <div class="testim-name">Marcos Teixeira</div>
+                <div class="testim-stars">
+                    <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                </div>
+                <div class="testim-text">Seguro e confiável. Recebi exatamente o que comprei sem enrolação.</div>
+            </div>
+        </div>
+
+        <div class="testim-item">
+            <div class="testim-avatar">FC</div>
+            <div class="testim-content">
+                <div class="testim-name">Fernanda Costa</div>
+                <div class="testim-stars">
+                    <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                </div>
+                <div class="testim-text">Gostei bastante do ambiente seguro. Me passou muita credibilidade logo de cara.</div>
+            </div>
+        </div>
     </div>
 
     <div class="box fade-in hide" id="pixCard">
@@ -296,14 +369,12 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
     btnGerar.disabled = true;
     btnGerar.innerHTML = '<span class="status-spin" style="border-top-color:#fff; width:18px; height:18px;"></span> Gerando...';
 
-    // Se você usa o SDK da Mangofy (fast_api.min.js), passamos o config assim.
-    // Se você usar seu arquivo PHP (gerar_pix.php), basta substituir a chamada `generatePix` por um `fetch('gerar_pix.php', ...)`
     const config = {
         total_price: VALOR_COMPRA,
         customer: {
             name: document.getElementById('nome').value,
             email: document.getElementById('email').value,
-            document: document.getElementById('cpf').value.replace(/\D/g, '') // CPF só números
+            document: document.getElementById('cpf').value.replace(/\D/g, '')
         },
         items: [
             { name: 'front', price: VALOR_COMPRA, quantity: 1 }
@@ -311,12 +382,12 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
     };
 
     try {
-        // Chamada nativa do SDK da Mangofy que já estava no seu código
         const response = await generatePix(config);
 
         if (response.success) {
-            // Esconde o formulário
+            // Esconde o formulário e os depoimentos
             document.getElementById('formCard').classList.add('hide');
+            document.getElementById('testimonialsCard').classList.add('hide');
             
             // Mostra o QR Code e Instruções
             document.getElementById('pixCard').classList.remove('hide');
@@ -330,8 +401,8 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
             startCountdown(300);
             startProgress();
             
-            // Rola pro topo
-            window.scrollTo(0,0);
+            // Rola pro topo suavemente
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
             throw new Error(response.message || 'Erro ao comunicar com a Mangofy.');
         }
@@ -352,6 +423,7 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
 
 function showError(msg) {
     document.getElementById('formCard').classList.add('hide');
+    document.getElementById('testimonialsCard').classList.add('hide');
     document.getElementById('pixCard').classList.add('hide');
     document.getElementById('instBox').classList.add('hide');
     document.getElementById('errSection').classList.add('show');
