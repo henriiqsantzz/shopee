@@ -25,27 +25,36 @@
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--txt1);min-height:100vh;-webkit-font-smoothing:antialiased}
 
-        /* ── TOPBAR ALTERADA PARA LOGO MAIOR ── */
-        .topbar{
-            position:fixed;top:0;left:0;right:0;
-            height:auto; min-height: 90px; /* Altura automática para acomodar logo maior */
-            background:var(--card);
-            display:flex;
-            flex-direction: column; align-items:center; justify-content:center; /* Empilha e centraliza */
-            padding:15px 20px; /* Mais preenchimento vertical */
-            box-shadow:0 1px 10px rgba(0,0,0,.05);z-index:100;
+        /* ── TOPBAR CORRIGIDA PROPORÇÃO SPOTIFY ── */
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            height: 70px; /* Aumentado para dar espaço para a logo crescer */
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Mantém logo na esquerda e cadeado na direita */
+            padding: 0 20px;
+            box-shadow: 0 1px 10px rgba(0,0,0,.05);
+            z-index: 100;
         }
-        .topbar-logo{display:flex;align-items:center;text-decoration:none; margin-bottom: 10px; /* Espaço para o selo abaixo */}
-        
-        /* AUMENTO DA LOGO SIGNIFICATIVO */
-        .topbar-logo-img{height:60px; max-width:240px; object-fit:contain} 
+        .topbar-logo {
+            display: flex; align-items: center; text-decoration: none;
+        }
+        .topbar-logo-img {
+            height: 45px; /* Altura ideal para bater com o visual do Spotify */
+            max-width: 200px;
+            object-fit: contain;
+        }
+        .topbar-secure {
+            display: flex; align-items: center; gap: 4px;
+            background: var(--primary-bg); color: var(--primary);
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 600;
+        }
+        .topbar-secure .material-symbols-outlined { font-size: 16px; }
 
-        .topbar-secure{display:flex;align-items:center;gap:4px;background:var(--primary-bg);color:var(--primary);padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600}
-        .topbar-secure .material-symbols-outlined{font-size:14px}
-
-        /* ── WRAP AJUSTADO PARA O CABEÇALHO MAIOR ── */
-        .wrap{padding:120px 16px 32px;max-width:460px;margin:0 auto;display:block; width: 100%;} /* Aumentei o padding superior */
-        
+        /* ── WRAP AJUSTADO ── */
+        .wrap{padding:90px 16px 32px;max-width:460px;margin:0 auto;display:block; width: 100%;}
         .box{background:var(--card);border-radius:20px;padding:24px 20px;box-shadow:0 2px 20px rgba(0,0,0,.04);margin-bottom:14px}
 
         /* ── FORMULÁRIO ── */
