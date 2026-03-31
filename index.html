@@ -79,13 +79,13 @@
         .valor-big{font-size:42px;font-weight:900;color:var(--primary);text-align:center; margin-bottom: 20px;}
         
         /* QR CODE COM SOMBRA LARANJA */
-        .qr-frame{width:224px;height:224px;background:#fff;border:3px solid #1ed760;border-radius:20px;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow: 0 4px 30px rgba(255, 122, 0, 0.6);}
+        .qr-frame{width:224px;height:224px;background:#fff;border:3px solid #ee4d2d;border-radius:20px;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow: 0 4px 30px rgba(255, 122, 0, 0.6);}
         .qr-frame img{width:194px;height:194px;image-rendering: pixelated;}
 
         /* PIX BOX TRACEJADA */
         .pix-box{width:100%;background:#f8f9fa;border:2px dashed #d1d5db;border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer}
         .pix-txt{flex:1;font-size:11px;font-family:monospace;color:#666;word-break:break-all;line-height: 1.4; max-height: 45px; overflow: hidden;}
-        .copy-btn{background:#2ecc71;color:#fff;border:none;padding:10px 14px;border-radius:10px;font-weight:bold; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-family: 'Montserrat';}
+        .copy-btn{background:#ee4d2d;color:#fff;border:none;padding:10px 14px;border-radius:10px;font-weight:bold; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-family: 'Montserrat';}
 
         /* STATUS BAR GIRANDO INFINITO */
         .status-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;background:#fafafa;border-radius:14px;margin-top:18px; font-size: 12px; font-weight: 600; color: var(--txt2);}
@@ -93,16 +93,16 @@
 
         /* COMO PAGAR */
         .inst { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 13px; }
-        .inst-n { width: 24px; height: 24px; border-radius: 50%; background: #e8fdf0; color: #2ecc71; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; }
+        .inst-n { width: 24px; height: 24px; border-radius: 50%; background: #e8fdf0; color: #ee4d2d; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; }
         .inst p { font-size: 13px; color: var(--txt2); line-height: 1.5; padding-top: 3px; }
         .trust-i { display: flex; align-items: center; gap: 4px; font-size: 10px; color: #999; font-weight: 600; }
-        .trust-i span { font-size: 14px; color: #2ecc71; }
+        .trust-i span { font-size: 14px; color: #ee4d2d; }
 
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .hide { display: none !important; }
         .dot { width:8px; height:8px; border-radius:50%; background:#f1c40f; }
-        .dot.ok { background:#2ecc71; }
+        .dot.ok { background:#ee4d2d; }
     </style>
 </head>
 <body>
@@ -154,7 +154,7 @@
         </div>
 
         <p style="font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-            <span class="material-symbols-outlined" style="color: #2ecc71; font-size: 20px;">content_paste_go</span>
+            <span class="material-symbols-outlined" style="color: #ee4d2d; font-size: 20px;">content_paste_go</span>
             PIX Copia e Cola
         </p>
 
@@ -171,7 +171,7 @@
 
     <div class="box fade-in hide" id="howToPayCard">
         <p style="font-size: 16px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-            <span class="material-symbols-outlined" style="color: #2ecc71;">help</span> Como pagar
+            <span class="material-symbols-outlined" style="color: #ee4d2d;">help</span> Como pagar
         </p>
         <div class="inst"><div class="inst-n">1</div><p>Abra o <strong>app do seu banco</strong> ou carteira digital</p></div>
         <div class="inst"><div class="inst-n">2</div><p>Escolha pagar via <strong>PIX</strong> com QR Code ou Copia e Cola</p></div>
